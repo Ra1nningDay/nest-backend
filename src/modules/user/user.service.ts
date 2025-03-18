@@ -6,16 +6,42 @@ import { User, Prisma } from "@prisma/client";
 export class UserService {
   constructor(private prisma: PrismaService) {}
 
-  async user(
-    userWhereUniqueInput: Prisma.UserWhereUniqueInput,
-  ): Promise<User | null> {
+  async users(): Promise<User[]> {
+    return this.prisma.user.findMany();
+  }
+
+  async userById(id: number): Promise<User | null> {
     return this.prisma.user.findUnique({
-      where: userWhereUniqueInput,
+      where: { id },
     });
   }
 
-  async createUser(data: Prisma.UserCreateInput): Promise<User> {
+  async createUser(data: Prisma.UserCreateInput): Promise<User | null> {
     return this.prisma.user.create({
+      data: {
+        ...data,
+        roles: {
+          create: [
+            {
+              role: {
+                connect: { name: "user" },
+              },
+            },
+          ],
+        },
+      },
+      include: {
+        roles: true,
+      },
+    });
+  }
+
+  async updateUser(
+    userWhereUniqueInput: Prisma.UserWhereUniqueInput,
+    data: Prisma.UserUpdateInput,
+  ): Promise<User> {
+    return this.prisma.user.update({
+      where: userWhereUniqueInput,
       data,
     });
   }

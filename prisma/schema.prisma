@@ -47,7 +47,7 @@ model UserRole {
 
 model Category {
   id Int @id @default(autoincrement())
-  name String
+  name String @unique
   description String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -58,7 +58,7 @@ model Category {
 model Product {
   id Int @id @default(autoincrement())
   category_id Int
-  name String
+  name String 
   price Decimal
   stock_quantity Int
   created_at DateTime @default(now())
