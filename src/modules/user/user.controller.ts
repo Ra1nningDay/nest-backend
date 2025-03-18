@@ -2,10 +2,10 @@ import {
   Controller,
   Get,
   Post,
-  Put,
   Param,
   Body,
   Delete,
+  Patch,
 } from "@nestjs/common";
 import { UserService } from "./user.service";
 import { userUpdateDto } from "./dto/user-update.dto";
@@ -30,7 +30,7 @@ export class UserController {
     return this.userService.createUser(data);
   }
 
-  @Put("/:id")
+  @Patch("/:id")
   updateUserById(@Param("id") id: string, @Body() data: userUpdateDto) {
     return this.userService.updateUser(Number(id), data);
   }
