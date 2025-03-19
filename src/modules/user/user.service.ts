@@ -14,7 +14,7 @@ export class UserService {
   async users(paginationDto: PaginationDto): Promise<User[]> {
     return this.prisma.user.findMany({
       skip: paginationDto.skip,
-      take: paginationDto.litmit ?? DEFAULT_PAGE_PAGINATION,
+      take: paginationDto.limit ?? DEFAULT_PAGE_PAGINATION,
     });
   }
 
