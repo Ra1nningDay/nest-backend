@@ -3,11 +3,6 @@ import { Type } from "class-transformer";
 
 export class UpdateProductDto {
   @IsOptional()
-  @IsInt()
-  @Type(() => Number)
-  id?: number;
-
-  @IsOptional()
   @IsString()
   @MaxLength(255)
   name?: string;

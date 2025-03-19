@@ -11,7 +11,7 @@ import {
 import { ProductService } from "./product.service";
 import { PaginationDto } from "../dto/pagination.dto";
 import { CreateProductDto } from "./dto/create-product.dto";
-// import { UpdateProductDto } from "./dto/get-product.dto";
+import { UpdateProductDto } from "./dto/update-product.dto";
 
 @Controller("product")
 export class ProductController {
@@ -33,12 +33,15 @@ export class ProductController {
   }
 
   @Patch("/:id")
-  updateProduct() {
-    return this.productService;
+  updateProduct(
+    @Param("id") id: string,
+    @Body() updateProductDto: UpdateProductDto,
+  ) {
+    return this.productService.updateProduct(+id, updateProductDto);
   }
 
   @Delete("/:id")
-  deleteProduct() {
-    return this.productService;
+  deleteProduct(@Param() id: string) {
+    return this.productService.deleteProduct(+id);
   }
 }
