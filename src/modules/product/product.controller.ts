@@ -10,7 +10,8 @@ import {
 } from "@nestjs/common";
 import { ProductService } from "./product.service";
 import { PaginationDto } from "../dto/pagination.dto";
-import { GetProductDto } from "./dto/get-product.dto";
+import { CreateProductDto } from "./dto/create-product.dto";
+// import { UpdateProductDto } from "./dto/get-product.dto";
 
 @Controller("product")
 export class ProductController {
@@ -22,13 +23,13 @@ export class ProductController {
   }
 
   @Get("/:id")
-  findProductById(@Param("id") @Body() productDto: GetProductDto) {
-    return this.productService.getProductById(productDto);
+  findProductById(@Param("id") id: string) {
+    return this.productService.getProductById(+id);
   }
 
-  @Post("/:id")
-  createProduct() {
-    return this.productService;
+  @Post("/")
+  createProduct(@Body() createProductDto: CreateProductDto) {
+    return this.productService.createProduct(createProductDto);
   }
 
   @Patch("/:id")

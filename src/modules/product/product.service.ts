@@ -2,7 +2,8 @@ import { Injectable } from "@nestjs/common";
 import { PrismaService } from "../prisma/prisma.service";
 import { PaginationDto } from "../dto/pagination.dto";
 import { DEFAULT_PAGE_PAGINATION } from "../utils/constant";
-import { GetProductDto } from "./dto/get-product.dto";
+// import { UpdateProductDto } from "./dto/get-product.dto";
+import { CreateProductDto } from "./dto/create-product.dto";
 
 @Injectable()
 export class ProductService {
@@ -15,10 +16,18 @@ export class ProductService {
     });
   }
 
-  async getProductById(productDto: GetProductDto) {
+  async getProductById(id: number) {
     return this.prisma.product.findFirst({
       where: {
-        id: productDto.id,
+        id: id,
+      },
+    });
+  }
+
+  async createProduct(createProductDto: CreateProductDto) {
+    return this.prisma.product.create({
+      data: {
+        ...createProductDto,
       },
     });
   }
