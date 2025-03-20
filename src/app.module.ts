@@ -1,11 +1,11 @@
-import { Module } from "@nestjs/common";
+import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { ConfigModule } from "@nestjs/config";
 import { UserModule } from "./modules/user/user.module";
 import { ProductModule } from "./modules/product/product.module";
-import { ProductCategoryController } from "./modules/product_category/product_category.controller";
 import { ProductCategoryModule } from "./modules/product_category/product_category.module";
+import { LoggerMiddleware } from "./middlewares/logger.middleware";
 
 @Module({
   imports: [
@@ -16,7 +16,11 @@ import { ProductCategoryModule } from "./modules/product_category/product_catego
     ProductModule,
     ProductCategoryModule,
   ],
-  controllers: [AppController, ProductCategoryController],
+  controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes("api/users");
+  }
+}

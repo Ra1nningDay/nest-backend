@@ -13,26 +13,26 @@ import { PaginationDto } from "../dto/pagination.dto";
 import { CreateCategoryDto } from "./dto/create-category.dto";
 import { UpdateCategoryDto } from "./dto/update-category.dto";
 
-@Controller("product-category")
+@Controller("product")
 export class ProductCategoryController {
   constructor(private productCategoryService: ProductCategoryService) {}
 
-  @Get("/")
+  @Get("/category")
   findAllProduct(@Query() paginationDto: PaginationDto) {
     return this.productCategoryService.getAllcategory(paginationDto);
   }
 
-  @Get("/:id")
+  @Get("/category/:id")
   findProductById(@Param("id") id: string) {
     return this.productCategoryService.getCategoryById(+id);
   }
 
-  @Post("/")
+  @Post("/category")
   createProduct(@Body() createProductDto: CreateCategoryDto) {
     return this.productCategoryService.createCategory(createProductDto);
   }
 
-  @Patch("/:id")
+  @Patch("/category/:id")
   updateProduct(
     @Param("id") id: string,
     @Body() updateCategoryDto: UpdateCategoryDto,
@@ -40,7 +40,7 @@ export class ProductCategoryController {
     return this.productCategoryService.updateCategory(+id, updateCategoryDto);
   }
 
-  @Delete("/:id")
+  @Delete("/category/:id")
   deleteCategory(@Param() id: string) {
     return this.productCategoryService.deleteCategory(+id);
   }
