@@ -3,7 +3,7 @@ import { PrismaService } from "../prisma/prisma.service";
 import { User } from "@prisma/client";
 import { userUpdateDto } from "./dto/user-update.dto";
 import { userCreateDto } from "./dto/user-create.dto";
-import { PaginationDto } from "../dto/pagination.dto";
+import { PaginationDto } from "../pagination/pagination.dto";
 import * as bcrypt from "bcrypt";
 import { DEFAULT_PAGE_PAGINATION } from "../utils/constant";
 
@@ -21,6 +21,14 @@ export class UserService {
   async userById(id: number): Promise<User | null> {
     return this.prisma.user.findUnique({
       where: { id },
+    });
+  }
+
+  async userByEmail(email: string): Promise<User | null> {
+    return this.prisma.user.findUnique({
+      where: {
+        email: email,
+      },
     });
   }
 

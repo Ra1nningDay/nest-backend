@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "../prisma/prisma.service";
-import { PaginationDto } from "../dto/pagination.dto";
+import { PaginationDto } from "../pagination/pagination.dto";
 import { DEFAULT_PAGE_PAGINATION } from "../utils/constant";
 import { UpdateCategoryDto } from "./dto/update-category.dto";
 import { CreateCategoryDto } from "./dto/create-category.dto";

@@ -9,7 +9,7 @@ import {
   Body,
 } from "@nestjs/common";
 import { ProductService } from "./product.service";
-import { PaginationDto } from "../dto/pagination.dto";
+import { PaginationDto } from "../pagination/pagination.dto";
 import { CreateProductDto } from "./dto/create-product.dto";
 import { UpdateProductDto } from "./dto/update-product.dto";
 

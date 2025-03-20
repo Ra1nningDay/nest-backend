@@ -9,7 +9,7 @@ import {
   Query,
 } from "@nestjs/common";
 import { ProductCategoryService } from "./product_category.service";
-import { PaginationDto } from "../dto/pagination.dto";
+import { PaginationDto } from "../pagination/pagination.dto";
 import { CreateCategoryDto } from "./dto/create-category.dto";
 import { UpdateCategoryDto } from "./dto/update-category.dto";
 
