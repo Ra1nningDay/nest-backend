@@ -13,7 +13,7 @@ import { PaginationDto } from "../dto/pagination.dto";
 import { CreateProductDto } from "./dto/create-product.dto";
 import { UpdateProductDto } from "./dto/update-product.dto";
 
-@Controller("product")
+@Controller("api/product")
 export class ProductController {
   constructor(private productService: ProductService) {}
 

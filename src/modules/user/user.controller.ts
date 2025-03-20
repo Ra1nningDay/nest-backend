@@ -13,7 +13,7 @@ import { userUpdateDto } from "./dto/user-update.dto";
 import { userCreateDto } from "./dto/user-create.dto";
 import { PaginationDto } from "src/modules/dto/pagination.dto";
 
-@Controller("users")
+@Controller("api/users")
 export class UserController {
   constructor(private userService: UserService) {}
 

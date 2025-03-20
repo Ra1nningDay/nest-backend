@@ -3,8 +3,9 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { ConfigModule } from "@nestjs/config";
 import { UserModule } from "./modules/user/user.module";
-import { ProductService } from "./modules/product/product.service";
 import { ProductModule } from "./modules/product/product.module";
+import { ProductCategoryController } from "./modules/product_category/product_category.controller";
+import { ProductCategoryModule } from "./modules/product_category/product_category.module";
 
 @Module({
   imports: [
@@ -13,8 +14,9 @@ import { ProductModule } from "./modules/product/product.module";
     }),
     UserModule,
     ProductModule,
+    ProductCategoryModule,
   ],
-  controllers: [AppController],
-  providers: [AppService, ProductService],
+  controllers: [AppController, ProductCategoryController],
+  providers: [AppService],
 })
 export class AppModule {}

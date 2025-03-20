@@ -1,1 +1,1 @@
-export const DEFAULT_PAGE_PAGINATION = 5;
+export const DEFAULT_PAGE_PAGINATION = 10;
