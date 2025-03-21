@@ -11,6 +11,7 @@ import {
 import { AuthService } from "./auth.service";
 import { SignInDto } from "./dto/signIn.dto";
 import { AuthGuard } from "./auth.guard";
+import { JwtPayload } from "./../../types/express.dto";
 
 @Controller("auth")
 export class AuthController {
@@ -24,7 +25,7 @@ export class AuthController {
 
   @UseGuards(AuthGuard)
   @Get("profile")
-  getProfile(@Request() req: any) {
+  getProfile(@Request() req: Request & { user: JwtPayload }) {
     return req.user;
   }
 }
